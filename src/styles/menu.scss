@@ -1,0 +1,83 @@
+@import './variables.scss';
+
+.menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+
+    .navigation {
+        display: flex;
+        align-items: center;
+
+        .logo {
+            margin-right: 40px;
+        }
+
+        .nav {
+            display: flex;
+
+            &__item {
+                width: 70px;
+                height: 10px;
+                font-weight: 600;
+                cursor: pointer;
+                font-size: 14px;
+                transition: all 0.1s;
+
+                &:hover {
+                    font-size: 15px;
+                }
+            }
+        }
+    }
+
+    .checkout {
+        display: flex;
+        align-items: center;
+        border-radius: 32px;
+        flex-direction: row;
+        -webkit-box-align: center;
+        align-items: center;
+        height: $chekout-height;
+        border: 2px solid rgb(186, 186, 186);
+
+        &__order {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgb(79, 79, 79);
+            color: #FFF;
+            border-radius: 32px;
+            width: 45px;
+            height: $chekout-height;
+
+
+            &-container {
+                span {
+                    display: block;
+                }   
+            }
+            
+        }
+
+        &__button {
+            background-color: rgb(254, 0, 33);
+            border-radius: 100px;
+            padding: 0 25px;
+            height: $chekout-height;
+            line-height: $chekout-height;
+            color: #FFF;
+            cursor: pointer;
+        }
+
+        &__price {
+            font-size: 14px;
+            min-width: 10px;
+
+            span {
+                padding: 0 25px;
+            }
+        }
+    }
+}

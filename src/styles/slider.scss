@@ -1,0 +1,28 @@
+@import './variables.scss';
+
+.slider-container {
+    width: 100%;
+    margin-top: 10px;
+    width: 100%;
+    overflow: hidden;
+
+    &__item {
+        cursor: pointer;
+        img {
+            width: 100%;
+            height: 300px;
+            object-fit: fill;
+            border-radius: 40px;
+        }
+    }
+
+    .slick-dots {
+        position: unset;
+        
+    }
+
+    .slick-dots li.slick-active button:before {
+        opacity: .75;
+        color: $color-red;
+    }
+}

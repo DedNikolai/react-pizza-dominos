@@ -1,24 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Router from "./components/Router";
+import Toastr from "./components/Toastr";
+import AuthProvider from './components/AuthProvider';
+import LanguageProvider from "./components/LanguageProvider";
+import CityProvider from "./components/CityProvider";
+import CityModal from "./components/CityModal";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthProvider>
+      <LanguageProvider>
+        <CityProvider>
+          <CityModal />
+          <Router />
+          <Toastr />
+        </CityProvider>
+      </LanguageProvider>
+    </AuthProvider>
   );
 }
 
