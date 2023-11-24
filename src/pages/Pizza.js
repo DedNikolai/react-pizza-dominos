@@ -1,8 +1,27 @@
-import React from "react";
+import React, {useMemo} from "react";
+import PizzaList from "../components/PizzaList";
+import { useQuery } from "react-query";
+import Loader from "../components/Loader";
+import { getPizzas } from "../api/pizza";
+
 
 function Pizza() {
+    const {data = [], isFetching = true} = useQuery('pizzas', getPizzas);
+
+    const pizzas = useMemo(() => {
+        return data;
+    }, [data])
+
+    const minPrice = Math.min(...data.map(item => item.price))
+    const maxPrice = Math.max(...data.map(item => item.price))
+
+    if (isFetching) {
+        return <Loader />
+    }
     return (
-        <h1>Pizza</h1>
+        <>
+            <PizzaList pizzas={pizzas} min={minPrice} max={maxPrice}/>
+        </>
     )
 };
 

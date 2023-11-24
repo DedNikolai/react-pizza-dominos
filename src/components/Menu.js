@@ -11,7 +11,7 @@ function Menu() {
                 </NavLink>
                 <ul className="nav">
                     <NavLink to='*'><li className="nav__item">Акція</li></NavLink>
-                    <NavLink to='*'><li className="nav__item">Піца</li></NavLink>
+                    <NavLink to='/pizza'><li className="nav__item">Піца</li></NavLink>
                     <NavLink to='*'><li className="nav__item">Напої</li></NavLink>
                     <NavLink to='*'><li className="nav__item">Сайди</li></NavLink>
                     <NavLink to='*'><li className="nav__item">Десерти</li></NavLink>                                      

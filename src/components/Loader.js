@@ -1,9 +1,12 @@
 import React from "react";
+import "../styles/loader.scss"
 
 
 function Loader() {
     return(
-        <h1>Loading.....</h1>
+        <div className="loader">
+            <div className="loader__spinner"></div>
+        </div>
     )
 }
 
