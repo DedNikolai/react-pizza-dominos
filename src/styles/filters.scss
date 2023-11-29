@@ -48,6 +48,7 @@
             position: absolute;
             top: 37px;
             right: 0;
+            z-index: 10;
             border-radius: 5px;
             box-shadow: 0px 5px 5px 2px #eee;
 
@@ -62,10 +63,14 @@
 .filter-dropdawn {
         background-color: rgb(255, 255, 255);
         border: 1px solid rgba(0, 0, 0, 0.15);
-        box-shadow: rgba(0, 0, 0, 0.13) 0px 4px 31px;
+        box-shadow: rgba(0, 0, 0, 0.13) 0px 13px 31px;
         border-radius: 8px;
         padding: 34px;
         margin-top: 10px;
+
+        .input-range-container {
+            padding: 0 8px;
+        }
 
         &__side {
             &_small {
@@ -128,4 +133,49 @@
 
         }
 
+}
+
+.checkbox-list {
+    padding: 0 20px;
+    display: flex;
+    flex-wrap: wrap;
+
+    &__item {
+        margin-bottom: 10px;
+        width: 150px;
+    }
+                
+}
+
+.custom-checkbox {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+}
+
+.custom-checkbox:checked+label::before {
+    border-color: rgb(0, 100, 145);
+    background-color: rgb(0, 100, 145);
+    content: '\2713';
+  }
+
+.custom-checkbox-label {
+    position: relative;
+        padding-left: 20px;
+        cursor: pointer;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 1px;
+            left: -5px;
+            width: 18px;
+            height: 18px;
+            text-align: center;
+            line-height: 18px;
+            color: #fff;
+            border: 1px solid rgb(217, 217, 217);
+            border-radius: 2px;
+            font-weight: bold;
+        }
 }
