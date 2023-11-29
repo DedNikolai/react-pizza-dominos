@@ -8,7 +8,7 @@ import Pizza from "../pages/Pizza";
 import NotFound from "../pages/NotFound"
 import RequireAuth from "./RequireAuth";
 import Profile from "../pages/Profile";
-import News from "../pages/News"
+import News from "../pages/News";
 
 function Router() {
     return (

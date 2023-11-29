@@ -1,0 +1,181 @@
+@import "./variables.scss";
+
+.filters {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+
+    @mixin size() {
+        width: 250px;
+        border: 1px solid rgb(190, 190, 190);
+        background-color: rgb(255, 255, 255);
+        padding: 0 15px;
+        box-sizing: border-box;
+    }
+
+    @mixin container() {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        @include size();
+        
+        
+        border-radius: 22px;
+        cursor: pointer;
+        font-size: 14px;
+
+        &:hover {
+            border-color: $menu-color;
+        }
+    }
+
+    .filter {
+        @include container();
+        justify-content: center;
+
+        .material-icons {
+            font-size: 32px;
+            color:dimgray
+        }
+    }
+
+    .sort {
+        @include container();
+        position: relative;
+
+        &__dropdawn {
+            @include size();
+            position: absolute;
+            top: 37px;
+            right: 0;
+            z-index: 10;
+            border-radius: 5px;
+            box-shadow: 0px 5px 5px 2px #eee;
+
+        }
+
+        &__item {
+            margin: 10px 0;
+        }
+    }
+}
+
+.filter-dropdawn {
+        background-color: rgb(255, 255, 255);
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        box-shadow: rgba(0, 0, 0, 0.13) 0px 13px 31px;
+        border-radius: 8px;
+        padding: 34px;
+        margin-top: 10px;
+
+        .input-range-container {
+            padding: 0 8px;
+        }
+
+        &__side {
+            &_small {
+                width: 25%;
+            }
+        }
+
+
+        &__container {
+            display: flex;
+        }
+
+        &__bottom {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        &__btn {
+            background-color: rgb(254, 0, 33);
+            border-radius: 100px;
+            padding: 11px 42px;
+            color: #fff;
+            border: 0px;
+
+            &_grey {
+                margin-right: 10px;
+                background-color: rgb(227, 227, 227);
+                color: $menu-color;
+            }
+        }
+
+        .input-range {
+            margin-top: 40px;
+
+            &__track--active {
+                background: $color-red;
+                height: 3px;
+            }
+
+            &__slider {
+                background: $color-red;
+                border: 1px solid $color-red;
+                margin-top: -9px;
+                width: 12px;
+                height: 12px;
+            }
+
+            &__label-container {
+                color: $menu-color;
+                background-color: #eee;
+            }
+
+            &__label:nth-last-child(1) {
+                display: none;
+            }
+
+            &__label:nth-last-child(3) {
+                display: none;
+            }
+
+        }
+
+}
+
+.checkbox-list {
+    padding: 0 20px;
+    display: flex;
+    flex-wrap: wrap;
+
+    &__item {
+        margin-bottom: 10px;
+        width: 150px;
+    }
+                
+}
+
+.custom-checkbox {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+}
+
+.custom-checkbox:checked+label::before {
+    border-color: rgb(0, 100, 145);
+    background-color: rgb(0, 100, 145);
+    content: '\2713';
+  }
+
+.custom-checkbox-label {
+    position: relative;
+        padding-left: 20px;
+        cursor: pointer;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 1px;
+            left: -5px;
+            width: 18px;
+            height: 18px;
+            text-align: center;
+            line-height: 18px;
+            color: #fff;
+            border: 1px solid rgb(217, 217, 217);
+            border-radius: 2px;
+            font-weight: bold;
+        }
+}
