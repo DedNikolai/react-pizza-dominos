@@ -1,10 +1,22 @@
 @import './variables.scss';
 
 .menu {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    width: 100%;
     padding: 10px 0;
+    background-color: #FFF;
+
+    &_fixed {
+        position: fixed;
+        z-index: 10;
+        top: 0;
+    }
+
+    &__wrapper {
+        padding: 0 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
 
     .navigation {
         display: flex;

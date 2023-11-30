@@ -8,11 +8,27 @@ import { AuthContext } from "./AuthProvider";
 function Layout() {
     const {isLoading} = useContext(AuthContext);
 
+    useEffect(() => {
+        window.addEventListener('scroll', () => {
+            const scrollpos = window.scrollY;
+            const headerHeight = document.body.querySelector('.header-wrapper').offsetHeight;
+            if (scrollpos >= headerHeight) {
+                document.body.querySelector('.menu').classList.add('menu_fixed')
+            }
+
+            if (scrollpos < headerHeight) {
+                document.body.querySelector('.menu').classList.remove('menu_fixed')
+            }
+        })
+    }, []) 
+
+
     return (
         <Fragment>
             <Header />
+            <Menu />
             <div className="container">
-                <Menu />
+                
                 {isLoading ? <Loader /> : <Outlet />}
             </div>
         </Fragment>
