@@ -4,6 +4,7 @@ import Header from "./Header";
 import Loader from "./Loader";
 import Menu from "./Menu";
 import { AuthContext } from "./AuthProvider";
+import MobileHeader from "./MobileHeader";
 
 function Layout() {
     const {isLoading} = useContext(AuthContext);
@@ -27,6 +28,7 @@ function Layout() {
         <Fragment>
             <Header />
             <Menu />
+            <MobileHeader />
             <div className="container">
                 
                 {isLoading ? <Loader /> : <Outlet />}

@@ -2,14 +2,14 @@ import React, {useState, useEffect, useContext} from "react";
 import {NavLink } from 'react-router-dom';
 import Languages from "./Langueges";
 import { LanguageContext } from "./LanguageProvider";
-import { CityContext } from "./CityProvider";
 import '../styles/header.scss';
-import "../index.scss"
+import "../index.scss";
+import Location from "./Location";
 
 function Header() {
     const [isLanguageIcon, setIsLanguageIcon] = useState(false);
     const {language} = useContext(LanguageContext);
-    const {city, setCityModal} = useContext(CityContext);
+
     
     const toggleLanguege = (e) => {
         e.stopPropagation()
@@ -36,17 +36,7 @@ function Header() {
                             0442221111
                         </div>
                     </div>
-                    <div 
-                        className="header__item header__item_with-icon"
-                        onClick={() => setCityModal(true)}
-                    >
-                        <div className="header__item-icon">
-                            <span className="material-icons">location_on</span>
-                        </div>
-                        <div>
-                            {city}
-                        </div>
-                    </div>
+                    <Location classes={"locaton header__item header__item_with-icon"} />
                     <NavLink to={'/tracker'} className="header__item">PIZZA TRACKER</NavLink>
                     <NavLink to={'/news'} className="header__item">НОВИНИ</NavLink>
                 </div>
