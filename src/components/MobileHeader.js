@@ -1,14 +1,17 @@
-import React from "react";
+import React, {useContext} from "react";
 import "../styles/mobileHeader.scss";
 import { NavLink } from "react-router-dom";
 import Location from "./Location";
+import { BurgerContext } from "./BurgerMenuProvider";
 
 function MobileHeader() {
+    const {toggleMenu} = useContext(BurgerContext)
+
     return (
         <div className="mobole-header">
             <div className="mobole-header-list">
                 <div className="mobole-header-list__item">
-                    <div className="burger">
+                    <div className="burger" onClick={() => toggleMenu(true)}>
                         <div className="burger__item"></div>
                         <div className="burger__item"></div>
                         <div className="burger__item"></div>

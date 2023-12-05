@@ -1,28 +1,12 @@
-import React, {useState, useEffect, useContext} from "react";
+import React from "react";
 import {NavLink } from 'react-router-dom';
-import Languages from "./Langueges";
-import { LanguageContext } from "./LanguageProvider";
 import '../styles/header.scss';
 import "../index.scss";
 import Location from "./Location";
+import Language from "./Language";
+import LoginButton from "./LoginButton";
 
 function Header() {
-    const [isLanguageIcon, setIsLanguageIcon] = useState(false);
-    const {language} = useContext(LanguageContext);
-
-    
-    const toggleLanguege = (e) => {
-        e.stopPropagation()
-        setIsLanguageIcon(prev => {
-            return !prev
-        })
-    };
-
-    useEffect(() => {  
-        document.body.addEventListener('click', () => {
-            setIsLanguageIcon(false)
-        })
-    }, [])
 
     return (
         <div className="header-wrapper">
@@ -41,19 +25,8 @@ function Header() {
                     <NavLink to={'/news'} className="header__item">НОВИНИ</NavLink>
                 </div>
                 <div className="header__side header__side_left">
-                    <div 
-                        className="header__item header__item_with-icon"
-                        onClick={toggleLanguege}
-                    >
-                        <div>
-                        {language}
-                        </div>
-                        <div className="header__item-icon margin-left-none">
-                            <span className="material-icons">keyboard_arrow_down</span>
-                        </div>
-                        {isLanguageIcon ? <Languages /> : ''}
-                    </div>
-                    <div className="header__item header__item_margin-right-none"><button className="header__button">Увійти</button></div>
+                    <Language classes={"header__item header__item_with-icon"}/>
+                    <LoginButton classes="header__item header__item_margin-right-none" />
                 </div>
             </div>
         </div>

@@ -1,10 +1,12 @@
-import React, {Fragment, useEffect, useState, useContext} from "react";
+import React, {Fragment, useEffect, useContext} from "react";
 import {Outlet} from 'react-router-dom';
 import Header from "./Header";
 import Loader from "./Loader";
 import Menu from "./Menu";
 import { AuthContext } from "./AuthProvider";
 import MobileHeader from "./MobileHeader";
+import BurgerMenu from "./BurgerMenu";
+import Footer from "./Footer";
 
 function Layout() {
     const {isLoading} = useContext(AuthContext);
@@ -29,10 +31,11 @@ function Layout() {
             <Header />
             <Menu />
             <MobileHeader />
+            <BurgerMenu />
             <div className="container">
-                
                 {isLoading ? <Loader /> : <Outlet />}
             </div>
+            <Footer />
         </Fragment>
 
     )
