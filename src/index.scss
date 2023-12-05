@@ -45,3 +45,66 @@ h3 {
   margin: 0;
   padding: 0;
 }
+
+.mini-logo {
+  width: 30px;
+  height: 30px;
+  object-fit: fill;
+  margin-right: 10px;
+}
+
+.language {
+  position: relative;
+  font-weight: bold;
+  display: flex;
+}
+
+.language-container {
+  position: absolute;
+  top: 35px;
+  right: -2px;
+  z-index: 200;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  box-shadow: rgba(0, 0, 0, 0.13) 0px 4px 31px;
+  border-radius: 8px;
+  width: max-content;
+  color: $menu-color;
+  padding: 10px 0;
+  
+
+      &__item {
+          padding: 5px 17px;
+
+          &_checked {
+              color: $color-red;
+          }
+      }
+  }
+
+  .arrow {
+    position: absolute;
+    top: 21px;
+    left: 3px;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 15px solid rgb(217, 217, 217);
+}
+
+.header-button {
+    background-color: rgba(255, 255, 255, 0.16);
+    border-radius: 32px;
+    padding: 13px 36px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    border: 0px solid rgb(0, 0, 0);
+    box-sizing: border-box;
+
+    &:hover {
+        cursor: pointer;
+        background-color: rgba(255, 255, 255, 0.26);
+    }
+}

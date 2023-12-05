@@ -73,8 +73,9 @@
         }
 
         &__side {
+            width: 70%;
             &_small {
-                width: 25%;
+                width: 30%;
             }
         }
 
@@ -178,4 +179,20 @@
             border-radius: 2px;
             font-weight: bold;
         }
+}
+
+@media (max-width: 900px) {
+    .filter-dropdawn {
+
+        .input-range-container {
+           
+        }
+
+        &__side {
+            width: 50%;
+            &_small {
+                width: 50%;
+            }
+        }
+    }
 }

@@ -1,10 +1,24 @@
 @import './variables.scss';
 
 .menu {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    width: 100%;
     padding: 10px 0;
+    background-color: #FFF;
+
+    &_fixed {
+        position: fixed;
+        z-index: 10;
+        top: 0;
+    }
+
+    &__wrapper {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
 
     .navigation {
         display: flex;
@@ -79,5 +93,11 @@
                 padding: 0 25px;
             }
         }
+    }
+}
+
+@media (max-width: 981px) {
+    .menu {
+        display: none;
     }
 }
