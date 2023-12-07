@@ -1,0 +1,117 @@
+@import './variables.scss';
+
+.login-modal {
+    position: fixed;
+    z-index: 300;
+    inset: 0px;
+    background-color: rgba(0, 0, 0, 0.77);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &_closed {
+        display: none;
+    }
+
+    .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+
+        .material-icons {
+            font-size: 36px;
+        }
+    }
+
+    &__container {
+        width: 300px;
+        position: relative;
+        background-color: rgb(255, 255, 255);
+        border-radius: 4px;
+        border: 0.5px rgb(186, 186, 186);
+        padding: 30px 100px;
+    }
+
+    .login-form {
+
+        &__field {
+            position: relative;
+            margin-top: 30px;
+
+            .visibility {
+                position: absolute;
+                top: 25px;
+                right: 0;
+                font-size: 28px;
+                font-weight: 200;
+                
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+
+        &__label {
+            font-size: 20px;
+
+            &_error {
+                color: $color-red;
+            }
+        }
+
+        &__input {
+            border: none;
+            width: 100%;
+            text-align: left;
+            height: 40px;
+            font-size: 18px;
+            line-height: 27px;
+            box-sizing: border-box;
+            padding: 0px;
+            border-bottom: 1px solid rgb(186, 186, 186);
+            background-color: transparent;
+            outline: none;
+
+            &_error {
+                color: $color-red;
+            }
+
+
+
+            &:focus {
+                outline: none;
+                box-shadow: none;
+                background-color: transparent;
+            }
+
+
+            &::placeholder {
+                opacity: 0.5;
+            }
+
+            &:on {
+                border: none;
+            }
+        }
+    }
+
+    .login-btn {
+        width: 100%;
+        background-color: $color-red;
+        border-radius: 32px;
+        padding: 13px 36px;
+        color: #fff;
+        font-size: 18px;
+        -webkit-box-align: stretch;
+        align-items: stretch;
+        border: 0px solid rgb(0, 0, 0);
+        box-sizing: border-box;
+        margin-top: 30px;
+
+        &_grey {
+            background-color: #e4e4e4;
+            color: $menu-color;
+        }
+    }
+
+}
