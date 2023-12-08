@@ -1,12 +1,15 @@
-import React from "react";
+import React, {useContext} from "react";
 import {NavLink } from 'react-router-dom';
 import '../styles/header.scss';
 import "../index.scss";
 import Location from "./Location";
 import Language from "./Language";
 import LoginButton from "./LoginButton";
+import LogoutButton from "./LogoutButton";
+import { AuthContext } from "./AuthProvider";
 
 function Header() {
+    const {user} = useContext(AuthContext);
 
     return (
         <div className="header-wrapper">
@@ -26,7 +29,13 @@ function Header() {
                 </div>
                 <div className="header__side header__side_left">
                     <Language classes={"header__item header__item_with-icon"}/>
-                    <LoginButton classes="header__item header__item_margin-right-none" />
+                    {
+                        user ?
+                        <LogoutButton classes="header__item header__item_margin-right-none" />
+                        : 
+                        <LoginButton classes="header__item header__item_margin-right-none" />
+                    }
+                    
                 </div>
             </div>
         </div>

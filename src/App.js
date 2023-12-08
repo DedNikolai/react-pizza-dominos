@@ -6,6 +6,8 @@ import LanguageProvider from "./components/LanguageProvider";
 import CityProvider from "./components/CityProvider";
 import CityModal from "./components/CityModal";
 import BurgerProvider from "./components/BurgerMenuProvider";
+import LoginModal from "./components/LoginModal";
+import RegisterModal from "./components/RegisterModal";
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
         <LanguageProvider>
           <CityProvider>
             <CityModal />
+            <LoginModal />
+            <RegisterModal />
             <Router />
             <Toastr />
           </CityProvider>

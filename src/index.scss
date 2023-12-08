@@ -89,6 +89,26 @@ h3 {
     border-left: 15px solid transparent;
     border-right: 15px solid transparent;
     border-bottom: 15px solid rgb(217, 217, 217);
+
+    &_logout {
+      top: 40px;
+      left: 40px;
+    }
+}
+
+.btn-container {
+  position: relative;
+  
+  .logout {
+    position: absolute;
+    top: 55px;
+    left: 10px;
+    background-color: #fff;
+    color: $menu-color;
+    font-size: 18px;
+    padding: 10px 20px;
+    box-shadow: rgba(0, 0, 0, 0.13) 0px 4px 31px;
+  }
 }
 
 .header-button {
@@ -103,8 +123,19 @@ h3 {
     border: 0px solid rgb(0, 0, 0);
     box-sizing: border-box;
 
+ 
+
     &:hover {
         cursor: pointer;
         background-color: rgba(255, 255, 255, 0.26);
     }
 }
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active  {
+  transition: background-color 5000s ease-in-out 0s;
+  color: inherit;
+}
+

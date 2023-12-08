@@ -13,7 +13,7 @@ function Language({classes, ...props}) {
     }, [])
 
     const toggleLanguege = (e) => {
-        e.stopPropagation()
+        e.stopPropagation();
         setIsLanguageIcon(prev => {
             return !prev
         })
