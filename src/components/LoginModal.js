@@ -4,6 +4,7 @@ import { AuthContext } from "./AuthProvider";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { logIn } from "../api/user";
 
 const schema = yup.object({
     email: yup.string().email('Невірний Email').required('Введіть email'),
@@ -12,7 +13,7 @@ const schema = yup.object({
 
 
 function LoginModal() {
-    const {loginModalIsOpen, toggleLogin, toggleRegister} = useContext(AuthContext);
+    const {loginModalIsOpen, toggleLogin, toggleRegister, setUser} = useContext(AuthContext);
     const [showPass, togglePass] = useState(false);
     const {register, handleSubmit, formState: {errors}, reset} = useForm({
         resolver: yupResolver(schema),
@@ -22,21 +23,23 @@ function LoginModal() {
     const closeModal = () => {
         toggleLogin(false);
         reset()
-    }
+    };
 
     const onSubMit = data => {
-        console.log(data);
-        reset();
-    }
+        logIn(data).then((res) => {
+            setUser(res)
+            closeModal()
+        });
+    };
 
     const togleShowPass = () => {
         togglePass(prev => !prev)
-    }
+    };
 
     const registration = () => {
         toggleRegister(true);
         toggleLogin(false);
-    }
+    };
 
     return (
         <div 

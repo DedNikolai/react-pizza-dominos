@@ -4,11 +4,13 @@ import { AuthContext } from "./AuthProvider";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { registerNewUser } from "../api/user";
 
 const schema = yup.object({
     email: yup.string().email('Невірний Email').required('Введіть email'),
     password: yup.string().required(),
-    name: yup.string().required('Введіть імя').min(2, 'Занадто коротке').max(20, 'Дуже довге'),
+    firstName: yup.string().required('Введіть імя').min(2, 'Занадто коротке').max(20, 'Дуже довге'),
+    lastName: yup.string().required('Введіть Прізвище').min(2, 'Занадто коротке').max(20, 'Дуже довге'),
     repeatPass: yup.string()
      .oneOf([yup.ref('password'), null], 'Паролі повинні співпадати')
 }).required();
@@ -28,8 +30,9 @@ function RegisterModal() {
     }
 
     const onSubMit = data => {
-        console.log(data);
-        reset();
+        registerNewUser(data).then(() => {
+            closeModal()
+        });
     }
 
     const togleShowPass = () => {
@@ -49,7 +52,7 @@ function RegisterModal() {
                     <div className="login-form__field">
                         <label 
                             className={`login-form__label ${errors.hasOwnProperty('email') && 'login-form__label_error'}`}
-                            htmlFor="login"
+                            htmlFor="log"
                         >
                             {errors.email?.message || "Логін"}
                         </label>
@@ -59,13 +62,13 @@ function RegisterModal() {
                             name="email"
                             placeholder="Ваш Email або номер телефону"
                             className={`login-form__input ${errors.hasOwnProperty('email') && 'login-form__input_error'}`}
-                            id="login"
+                            id="log"
                         />
                     </div>
                     <div className="login-form__field">
                         <label 
                             className={`login-form__label ${errors.hasOwnProperty('password') && 'login-form__label_error'}`}
-                            htmlFor="pass"
+                            htmlFor="pas"
                         >
                             {errors.email?.message || "Пароль"}
                         </label>
@@ -75,7 +78,7 @@ function RegisterModal() {
                             name="password"
                             placeholder="Ваш пароль"
                             className={`login-form__input ${errors.hasOwnProperty('password') && 'login-form__input_error'}`}
-                            id="pass"
+                            id="pas"
                         />
                         <span className="material-icons visibility" onClick={togleShowPass}>
                             {`${showPass ? 'visibility' : 'visibility_off'}`}
@@ -100,17 +103,33 @@ function RegisterModal() {
                     <div className="login-form__field">
                         <label 
                             className={`login-form__label`}
-                            htmlFor="name"
+                            htmlFor="firstName"
                         >
-                            {errors.name?.password || "Ім'я"}
+                            {errors.name?.firstName  || "Ім'я"}
                         </label>
                         <input
-                            {...register("name")} 
-                            type={`${showPass ? 'text' : "password"}`}
-                            name="name"
+                            {...register("firstName")} 
+                            type='text'
+                            name="firstName"
                             placeholder="Ім'я"
-                            className={`login-form__input ${errors.hasOwnProperty('name') && 'login-form__input_error'}`}
-                            id="name"
+                            className={`login-form__input ${errors.hasOwnProperty('firstName') && 'login-form__input_error'}`}
+                            id="firstName"
+                        />
+                    </div>
+                    <div className="login-form__field">
+                        <label 
+                            className={`login-form__label`}
+                            htmlFor="lastName"
+                        >
+                            {errors.name?.lastName  || "Прізвище"}
+                        </label>
+                        <input
+                            {...register("lastName")} 
+                            type='text'
+                            name="lastName"
+                            placeholder="Ім'я"
+                            className={`login-form__input ${errors.hasOwnProperty('lastName') && 'login-form__input_error'}`}
+                            id="lastName"
                         />
                     </div>
                     <div className="login-form__field">
