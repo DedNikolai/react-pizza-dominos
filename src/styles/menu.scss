@@ -76,6 +76,7 @@
         }
 
         &__button {
+            position: relative;
             background-color: rgb(254, 0, 33);
             border-radius: 100px;
             padding: 0 25px;
@@ -83,6 +84,19 @@
             line-height: $chekout-height;
             color: #FFF;
             cursor: pointer;
+
+            &-modal {
+                position: absolute;
+                z-index: 20;
+                left: -22px;
+                background-color: #FFF;
+                color: $menu-color;
+                padding: 5px 0;
+                text-align: center;
+                width: 150px;
+                border: 1px solid rgba(0, 0, 0, 0.15);
+                box-shadow: rgba(0, 0, 0, 0.13) 0px 4px 31px;
+            }
         }
 
         &__price {
