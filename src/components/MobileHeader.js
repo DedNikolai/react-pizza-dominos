@@ -1,11 +1,18 @@
-import React, {useContext} from "react";
+import React, {useContext, useCallback} from "react";
 import "../styles/mobileHeader.scss";
 import { NavLink } from "react-router-dom";
 import Location from "./Location";
 import { BurgerContext } from "./BurgerMenuProvider";
+import { OrderContext } from "./OrderProvider";
 
 function MobileHeader() {
-    const {toggleMenu} = useContext(BurgerContext)
+    const {toggleMenu} = useContext(BurgerContext);
+    const {order} = useContext(OrderContext);
+
+    const quantity = useCallback(() => {
+        const data = order.reduce((sum, current) => sum + current.quantity, 0);
+        return data;
+    }, [order]);
 
     return (
         <div className="mobole-header">
@@ -23,16 +30,37 @@ function MobileHeader() {
                     </NavLink>
                     <Location />
                 </div>
-                <div className="mobole-header-list__item">
-                    <span className="material-icons material-icons_big">shopping_cart</span>
-                </div>
+                {
+                    quantity() ?
+                    <NavLink to='order'>
+                        <div className="mobole-header-list__item">
+                            <span className="material-icons material-icons_big">shopping_cart</span>
+                            <div className="order-quantity">{quantity()}</div>
+                        </div>
+                    </NavLink>
+                    :
+                    <div className="mobole-header-list__item">
+                        <span className="material-icons material-icons_big">shopping_cart</span>
+                    </div>
+                }
+                
             </div>
             <div className="mobile-menu">
-                <div className="mobile-menu__item">Акції</div>
-                <div className="mobile-menu__item">Піца</div>
-                <div className="mobile-menu__item">Напої</div>
-                <div className="mobile-menu__item">Сайди</div>
-                <div className="mobile-menu__item">Десерти</div>
+                <NavLink to='*' className="logo">
+                    <div className="mobile-menu__item">Акції</div>
+                </NavLink>
+                <NavLink to='/pizza' className="logo">
+                    <div className="mobile-menu__item">Піца</div>
+                </NavLink>
+                <NavLink to='*' className="logo">
+                    <div className="mobile-menu__item">Напої</div>
+                </NavLink>
+                <NavLink to='*' className="logo">
+                    <div className="mobile-menu__item">Сайди</div>
+                </NavLink>               
+                <NavLink to='*' className="logo">
+                    <div className="mobile-menu__item">Десерти</div>
+                </NavLink>           
             </div>
         </div>
     )
