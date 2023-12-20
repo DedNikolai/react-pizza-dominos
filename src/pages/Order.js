@@ -1,4 +1,4 @@
-import React, { useContext, Fragment, useCallback } from "react";
+import React, { useContext, Fragment, useCallback, useState } from "react";
 import { OrderContext } from "../components/OrderProvider";
 import {CityContext} from "../components/CityProvider";
 import * as yup from "yup";
@@ -13,7 +13,8 @@ const schema = yup.object({
 }).required();
 
 function Order() {
-    const {order} = useContext(OrderContext);
+    const {order, setOrder} = useContext(OrderContext);
+    const [orderConfirmed, setOrderConfirmed] = useState(false);
     const {city} = useContext(CityContext)
     const {register, handleSubmit, formState: {errors}, reset} = useForm({
         resolver: yupResolver(schema),
@@ -23,13 +24,32 @@ function Order() {
 
     const onSubMit = data => {
         console.log({data, order});
-        reset()
+        reset();
+        setOrderConfirmed(true);
+        setOrder([])
     };
 
     const sum = useCallback(() => {
         const data = order.reduce((sum, current) => sum + current.price * current.quantity, 0);
         return data || '';
     }, [order]);
+
+    if (orderConfirmed) {
+        return (
+            <div className="order-container">
+                 <h1 className="title title_red">Дякуємо за замовлення</h1>
+            </div>           
+        )
+    }
+
+    if (order.length === 0) {
+
+        return (
+            <div className="order-container">
+                 <h1 className="title">Ваш кошик порожній</h1>
+            </div>           
+        )
+    }    
 
 
     return (
