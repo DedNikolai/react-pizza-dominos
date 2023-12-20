@@ -1,7 +1,8 @@
 
-import React, {useState, useEffect, memo} from "react";
+import React, {useState, useEffect, memo, useContext, useCallback} from "react";
 import * as TYPES from "../constants/pizza";
 import "../styles/pizza.scss";
+import { OrderContext } from "./OrderProvider";
 
 const defaultState = {
     size: TYPES.size.STANDART,
@@ -10,7 +11,17 @@ const defaultState = {
 }
 
 function PizzaItem({pizza}) {
-    const [params, setParams] = useState(defaultState)
+    const [params, setParams] = useState(defaultState);
+    const {order, setOrder} = useContext(OrderContext);
+
+    const isInTheOrder = () => {
+        return order.some(item => item.id === pizza.id)
+    }
+
+    const findQuantity = useCallback(() => {
+        const data = order.find(item => item.id === pizza.id);
+        return data ? data.quantity : 0;
+    }, [order])
 
     useEffect(() => {
         document.body.querySelector(`#pizza${pizza.id}`).addEventListener('click', e => {
@@ -27,7 +38,25 @@ function PizzaItem({pizza}) {
     }, [])
 
     const addToCard = () => {
-        console.log({...pizza, ...params})
+        setOrder([...order, {...pizza, ...params, quantity: 1}])
+    }
+
+    const minusQuantity = () => {
+        const data = order.find(item => item.id === pizza.id);
+        const temp = order.filter(item => item.id !== pizza.id);
+        if (data.quantity === 1) {
+            setOrder([...temp])
+        } else {
+            data.quantity -= 1;
+            setOrder([...temp, data])
+        }
+    }
+
+    const addQuantity = () => {
+        const data = order.find(item => item.id === pizza.id);
+        const temp = order.filter(item => item.id !== pizza.id);
+        data.quantity += 1;
+        setOrder([...temp, data])
     }
 
     return (
@@ -59,15 +88,27 @@ function PizzaItem({pizza}) {
                 <div className="pizza-list__item-bottom">
                     <div className="pizza-type__item-price">{`${pizza.price}.00 грн`}</div>
                     <div>
-                        <div className="order-btn">
-                            <div><span className="material-icons">shopping_cart</span></div>
-                            <div onClick={addToCard} className="order-btn__text">В кошик</div> 
-                        </div>
+                        {isInTheOrder() ?
+
+                            <div className="order-btn order-btn_grey">
+                                <div onClick={minusQuantity} className="order-btn__count">-</div>
+                                <div>{findQuantity()}</div> 
+                                <div onClick={addQuantity} className="order-btn__count">+</div>
+                            </div>
+                            :
+
+                            <div onClick={addToCard} className="order-btn">
+                                <div><span className="material-icons">shopping_cart</span></div>
+                                <div className="order-btn__text">В кошик</div> 
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
         </div>
     )
 }
+
+
 
 export default memo(PizzaItem);

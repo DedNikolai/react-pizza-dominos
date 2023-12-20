@@ -8,21 +8,24 @@ import CityModal from "./components/CityModal";
 import BurgerProvider from "./components/BurgerMenuProvider";
 import LoginModal from "./components/LoginModal";
 import RegisterModal from "./components/RegisterModal";
+import OrderProvider from "./components/OrderProvider";
 
 function App() {
   return (
     <AuthProvider>
-      <BurgerProvider>
-        <LanguageProvider>
-          <CityProvider>
-            <CityModal />
-            <LoginModal />
-            <RegisterModal />
-            <Router />
-            <Toastr />
-          </CityProvider>
-        </LanguageProvider>
-      </BurgerProvider>
+      <OrderProvider>
+        <BurgerProvider>
+          <LanguageProvider>
+            <CityProvider>
+              <CityModal />
+              <LoginModal />
+              <RegisterModal />
+              <Router />
+              <Toastr />
+            </CityProvider>
+          </LanguageProvider>
+        </BurgerProvider>
+      </OrderProvider>
     </AuthProvider>
   );
 }

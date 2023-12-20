@@ -22,8 +22,23 @@
         justify-content: space-between;
 
         &__item {
+            position: relative;
             display: flex;
             align-items: center;
+
+            .order-quantity {
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 15px;
+                height: 15px;
+                border-radius: 15px;
+                font-size: 12px;
+                text-align: center;
+                line-height: 15px;
+                background-color: $color-red;
+                color: #fff;
+            }
 
             .material-icons {
                 &_big {

@@ -9,6 +9,7 @@ import NotFound from "../pages/NotFound"
 import RequireAuth from "./RequireAuth";
 import Profile from "../pages/Profile";
 import News from "../pages/News";
+import Order from "../pages/Order";
 
 function Router() {
     return (
@@ -17,6 +18,7 @@ function Router() {
                 <Route index element={ <Home/> } />
                 <Route path="tracker" element={ <Tracker/> } />
                 <Route path="news" element={ <News/> } />
+                <Route path="order" element={ <Order/> } />
                 <Route path="registration" element={ <Registration/> } />
                 <Route path="pizza" element={<Pizza />} />
                 <Route path="profile" 
