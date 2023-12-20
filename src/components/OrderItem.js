@@ -10,16 +10,30 @@ function OredrItem({item}) {
         if (data.quantity === 1) {
             setOrder([...temp])
         } else {
-            data.quantity -= 1;
-            setOrder([...temp, data])
+            const changed = order.map(pizza => {
+                if (pizza.id === item.id) {
+                    pizza.quantity -= 1;
+    
+                    return pizza;
+                }
+    
+                return pizza;
+            })
+            setOrder(changed)
         }
     }
 
     const addQuantity = () => {
-        const data = order.find(pizza => pizza.id === item.id);
-        const temp = order.filter(pizza => pizza.id !== item.id);
-        data.quantity += 1;
-        setOrder([...temp, data])
+        const changed = order.map(pizza => {
+            if (pizza.id === item.id) {
+                pizza.quantity += 1;
+
+                return pizza;
+            }
+
+            return pizza;
+        })
+        setOrder([...changed])
     }
 
     const deleteItem = () => {
@@ -30,7 +44,7 @@ function OredrItem({item}) {
     return (
         <div className="order-list__item">
             <div className="order-list__img-container">
-                <img src="./img/pizza1.avif"/>
+                <img src={item.img}/>
             </div>
             <div className="order-list__details">
                 <div className="item-title">{item.name}</div>
